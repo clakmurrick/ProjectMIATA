@@ -73,14 +73,11 @@ struct Button {
 		}
 		floodfill(Left + (Right - Left) / 2, Top + (Bottom - Top) / 2, BLACK);
 	}
+	/*
 	void SLAMMED() {
-		setcolor(WHITE);
-		bar((maxX / 2) - 30, (maxY / 8) * 6, (maxX / 2) + 30, ((maxY / 8) * 6) + 30);
-		setcolor(BLACK);
-		rectangle((maxX / 2) - 30, (maxY / 8) * 6, (maxX / 2) + 30, ((maxY / 8) * 6) + 30);
-	}
+			}*/
 
-}COLOR[16], LEFT, RIGHT;
+}COLOR[16], LEFT, RIGHT, isSlammed;
 
 int GrDriver, GrMode, ErrorCode;
 POINT click;
@@ -120,6 +117,16 @@ void button() {
 	//SLAM.init(((maxX / 8) * 2) - 40, ((maxY / 3) * 2) - 40, ((maxX / 8) * 2) + 40, ((maxY / 3) * 2) + 40, WHITE);
 	LEFT.ARROW();
 	RIGHT.ARROW();
+	isSlammed.init((maxX / 2) - 30, (maxY / 8) * 6, (maxX / 2) + 30, ((maxY / 8) * 6) + 30, WHITE);
+	/*
+	
+	setcolor(WHITE);
+		bar((maxX / 2) - 30, (maxY / 8) * 6, (maxX / 2) + 30, ((maxY / 8) * 6) + 30);
+		setcolor(BLACK);
+		rectangle((maxX / 2) - 30, (maxY / 8) * 6, (maxX / 2) + 30, ((maxY / 8) * 6) + 30);
+
+	
+	*/
 	//SLAMMED();
 	/*
 	setcolor(WHITE);
@@ -266,6 +273,7 @@ void design(){
 				break;
 			}
 			ChangePart = false;
+			isSlammed.draw();
 		}
 
 		if (mouseInput.isPressed && LEFT.isPressed(click) || keyInput.isPressed && keyInput.VirtualKey == VK_LEFT) {
@@ -281,6 +289,17 @@ void design(){
 			ChangePart = true;
 			mouseInput.reset();
 			keyInput.reset();
+		}
+		else if (mouseInput.isPressed && isSlammed.isPressed(click)) {
+			ChangeCar = true;
+			ColorCar = true;
+			if (SELECTION == SLAMMED) {
+				SELECTION = STOCK;
+			}
+			else {
+				SELECTION = SLAMMED;
+			}
+			mouseInput.reset();
 		}
 		else if (mouseInput.isPressed) {
 			COLORSELECT = 99;
