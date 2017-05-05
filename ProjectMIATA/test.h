@@ -182,6 +182,7 @@ void design(){
 	tailLights = 12;
 	topTone = 4;	
 	settextstyle(0, 0, 4);
+	int currColor = RED;
 		int textWidth = (textwidth(Miata.c_str())) / 2;
 		int center = (getmaxx() / 2) - (textWidth);
 		outtextxy(center, 5, Miata.c_str());
@@ -191,6 +192,7 @@ void design(){
 
 		if (ChangeCar) {
 			setbkcolor(BLACK);
+			setcolor(currColor);
 			if (ColorCar) {
 				switch (Part) {
 					/*
@@ -292,7 +294,7 @@ void design(){
 		}
 		else if (mouseInput.isPressed && isSlammed.isPressed(click)) {
 			ChangeCar = true;
-			ColorCar = true;
+			//ColorCar = true;
 			if (SELECTION == SLAMMED) {
 				SELECTION = STOCK;
 			}

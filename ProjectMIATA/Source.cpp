@@ -143,7 +143,7 @@ void main() {
 	tailLights = 86;
 	topTone = 91;
 	outline = 0;
-	bool art = true;
+	bool art = false;
 	// change art to true to use LOADBMP
 	if (art) {
 		colors.at(0).init(0, 0, 0, outline);
